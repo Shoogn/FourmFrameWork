@@ -1,0 +1,36 @@
+﻿@model MvcDemo.Models.Forum
+
+
+@{
+    ViewBag.Title = "ViewForum";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewForum</h2>
+@if (Model.Posts.Count == 0) 
+{
+<p>Be the first one posted @@ @Model.Title</p>
+}
+@Html.RouteLink("Create new Post","PostCreate")
+
+<div id="post">
+    @{
+        var posts = Model.Posts.Where(p => p.Approved).OrderByDescending(p => p.AddedDate);
+        }
+
+    @foreach(var post in posts)
+    {
+        <div class="status">
+            <div class="viewCount status">
+                <strong>@post.ViewCount</strong><small>Counts</small>
+            </div>
+        </div>
+        
+        <h3>@Html.RouteLink(post.Title,"ForumPost",new {postId=post.PostID})</h3>
+        <div class="Posted-last">
+            <span class="posted-at">@post.AddedDate.ToUniversalTime()</span>ago
+            <span class="posted-by">@post.AddedBy</span>
+        </div>
+
+    }
+    </div>

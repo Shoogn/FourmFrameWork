@@ -1,0 +1,37 @@
+﻿@*@model IEnumerable<MvcDemo.ViewModels.PostViewModel>*@
+@model MvcDemo.Models.Post
+@using MvcDemo.Models
+
+
+@{
+    ViewBag.Title = "ViewPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewPost</h2>
+<div id="posts">
+    <div id="@Model.PostID" class="post">
+        <div id="countshow">
+            <strong>@Model.ViewCount <i>Views</i></strong>
+            
+        </div>
+        <hr />
+        <div class="title-header">
+                    @Model.Title
+        </div>
+        <hr />
+        @Model.Body
+    </div>
+    
+</div>
+<div id="post-comment">
+    <h3><i>Post comment</i></h3>
+    @foreach(Comment comment in Model.Comments) 
+    {
+        @Html.Partial("~/Views/Forum/_CommentItem.cshtml",comment);
+    }
+</div>
+<hr />
+<p>Add Comment</p>
+@Html.Partial("~/Views/Forum/_AddComment.cshtml",new MvcDemo.Models.Comment());
+<hr />

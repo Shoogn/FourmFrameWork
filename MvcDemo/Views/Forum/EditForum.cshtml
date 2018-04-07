@@ -1,0 +1,13 @@
+﻿@model MvcDemo.Models.Forum
+
+@{
+    ViewBag.Title = "EditForum";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditForum</h2>
+@using (Html.BeginForm("EditForum","Forum")) 
+{
+@Html.EditorForModel();
+    <input type="submit" value="Save Change" />
+}

@@ -1,0 +1,14 @@
+﻿@model MvcDemo.Models.Comment
+
+@{
+    var Id = Request.Url.Segments.Last();
+    }
+@using (Html.BeginForm("CreateComment", "Forum", FormMethod.Post))
+{
+  
+    <br />
+@Html.TextBoxFor(m => m.PostID, new { PostID = Id ,disabled = "true"})<br /><br />
+@Html.TextBoxFor(m => m.Title)<br /><br />
+@Html.TextAreaFor(m => m.Body)<br /><br />
+    <input type="submit" value="Add Comment" />
+}

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="title">MVC DEMO </div>
+    </div>
+    <div id="forums">
+
+    </div>
+    <div>
+        @if (TempData["message"] != null) 
+        {
+        <div class="message" style="background:green;color:white;padding:.2em;margin-top:.25em">
+            @TempData["message"]
+
+        </div>
+        }
+    </div>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/forums")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

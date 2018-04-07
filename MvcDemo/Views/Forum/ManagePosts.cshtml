@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MvcDemo.Models.Post>
+
+@{
+    ViewBag.Title = "ManagePosts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ManagePosts</h2>
+@if (Model == null) { 
+<p>There is no Posts yet..!!</p>
+}
+
+@foreach(var post in Model){
+    <div id="post-@post.PostID" class="post">
+
+        <div class="admin">
+          @Html.ActionLink("Approve","ApprovePost",new {postId=post.PostID})
+          @Html.ActionLink("Delete","RemovePost",new {postId=post.PostID})
+        </div>
+        
+        <h3>@post.Title</h3>
+          <div class="posted-last">
+            <span class="posted-at">@post.AddedDate.ToUniversalTime(); ago</span>
+            <span class="posted-by">by @post.AddedBy</span>
+        </div>
+
+         <a class="toggle-body" href="#">Show Body</a>
+        <div class="body" style="display:none;">
+            @post.Body
+        </div>
+    </div>
+    <hr />
+}

@@ -1,0 +1,31 @@
+﻿@model MvcDemo.Models.Post
+
+@{
+    ViewBag.Title = "CreatePost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using(Html.BeginForm("CreatePost","Forum",FormMethod.Post))
+{
+    <div class="forum">
+        <label>Slecte which forum you want to add your post</label><br />
+        
+        @Html.DropDownList("ForumID","Slecte from here")
+    </div>
+    
+    <div class="title">
+        <label>Title</label><br />
+        @Html.TextBoxFor(m=>m.Title)
+    </div>
+    
+    <div class="body">
+        <label>Body</label><br />
+        @Html.TextBoxFor(m=>m.Body)
+    </div>
+    
+    <div class="addedby">
+        <label>Your name</label><br />
+        @Html.TextBoxFor(m=>m.AddedBy)
+    </div><br />
+    <input type="submit" value="Create new Post" />
+}

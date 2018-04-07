@@ -1,0 +1,18 @@
+﻿@model MvcDemo.Models.Post
+
+@{
+    ViewBag.Title = "RemovePost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Delete Confirmation</h2>
+<hr />
+<p>Are you sure you want to delete <i>@Model.Title</i></p>
+<hr />
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

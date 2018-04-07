@@ -1,0 +1,5 @@
+ select Forums.Title,
+    COUNT(Posts.PostID) AS NumberOfPosts 
+   from Posts
+   LEFT JOIN Forums ON Posts.ForumID = Forums.ForumID
+    Group By Forums.Title

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MvcDemo.Models.Forum>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="mainMenu">
+
+        @foreach(var f in Model)
+        {
+            <ul>
+                <li>
+                    @Html.RouteLink(f.Title,"Forum",new {forumId = f.ForumID})                   
+            </li>
+            </ul>           
+        }
+</div>

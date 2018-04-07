@@ -1,0 +1,11 @@
+﻿@model MvcDemo.Models.Comment
+<div id="comment-@Model.CommentID" class="comment">
+    <div class="comment-header">
+        Hosted by <span class="name">
+            @Model.Approved</span>
+        @DateTime.Now - @Model.AddedDate.ToLongTimeString()
+    </div>
+    <blockquote class="body" style="width:570px;">@Model.Body</blockquote>
+</div>
+<link href="~/Content/Site.css" rel="stylesheet" />
+

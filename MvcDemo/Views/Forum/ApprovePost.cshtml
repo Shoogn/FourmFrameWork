@@ -1,0 +1,19 @@
+﻿@model MvcDemo.Models.Post
+
+@{
+    ViewBag.Title = "ApprovePost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ApprovePost</h2>
+
+<h2>Approve Confirmation</h2>
+<hr />
+<p>Are you sure you want to Approve <i>@Model.Title</i></p>
+<hr />
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Approve" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
