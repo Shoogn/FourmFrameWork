@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using MvcDemo.Models;
 using MvcDemo.Repository;
 using MvcDemo.AbstractLayer;
-using MvcDemo.ViewModels;
+
 
 namespace MvcDemo.Controllers
 {
