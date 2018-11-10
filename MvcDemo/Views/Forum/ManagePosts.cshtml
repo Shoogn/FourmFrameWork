@@ -4,30 +4,38 @@
     ViewBag.Title = "ManagePosts";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div id="manage-post">
+    <h2 class="heading">إدراة المنشورات</h2>
+    @if (Model == null)
+    {
+        <p>There is no Posts yet..!!</p>
+    }
 
-<h2>ManagePosts</h2>
-@if (Model == null) { 
-<p>There is no Posts yet..!!</p>
-}
+    @foreach (var post in Model)
+    {
+        <div id="post-@post.PostID" class="post">           
+            <ul>
+                <li>
+                    <div class="post-admin-status-approve">
+                     <strong>@Html.ActionLink("Approve", "ApprovePost", new { postId = post.PostID })</strong>                         
+                    </div>
 
-@foreach(var post in Model){
-    <div id="post-@post.PostID" class="post">
+                    <div class="post-admin-status-delete">
+                        <strong>@Html.ActionLink("Delete", "RemovePost", new { postId = post.PostID })</strong>
+                    </div>
+                    
+                    <div class="posted-last">
+                        <strong>@post.AddedDate.ToUniversalTime(); | By @post.AddedBy</strong>                    
+                    </div>
+                    <h3>@post.Title</h3>
 
-        <div class="admin">
-          @Html.ActionLink("Approve","ApprovePost",new {postId=post.PostID})
-          @Html.ActionLink("Delete","RemovePost",new {postId=post.PostID})
-        </div>
-        
-        <h3>@post.Title</h3>
-          <div class="posted-last">
-            <span class="posted-at">@post.AddedDate.ToUniversalTime(); ago</span>
-            <span class="posted-by">by @post.AddedBy</span>
-        </div>
+                    <a class="toggle-body" href="#">Show Body</a>
+                    <div class="body" style="display:none;">
+                       <h3>@post.Body</h3> 
+                    </div>
+                </li>
+            </ul>         
+        </div>     
+    }
+</div>
 
-         <a class="toggle-body" href="#">Show Body</a>
-        <div class="body" style="display:none;">
-            @post.Body
-        </div>
-    </div>
-    <hr />
-}

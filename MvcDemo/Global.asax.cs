@@ -17,6 +17,12 @@ namespace MvcDemo
     {
         protected void Application_Start()
         {
+            // To optimize and make page requests very fast..!!
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+            // ====================================
+
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -24,7 +30,9 @@ namespace MvcDemo
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+            // Set Up Dependency Injection
+            ControllerBuilder.Current.SetControllerFactory(new
+                NinjectControllerFactory());
         }
     }
 }

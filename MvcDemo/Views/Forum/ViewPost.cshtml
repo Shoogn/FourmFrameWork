@@ -8,30 +8,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ViewPost</h2>
 <div id="posts">
     <div id="@Model.PostID" class="post">
-        <div id="countshow">
-            <strong>@Model.ViewCount <i>Views</i></strong>
-            
+        
+        <div id="subject-header">
+            <div class="title-header">
+            @Model.Title               
+                </div>
+            <div class="postViewpage-status">
+                <strong>@Model.ViewCount</strong><small>View</small>
+            </div>  
         </div>
-        <hr />
-        <div class="title-header">
-                    @Model.Title
+        
+        <div id="subject-details">
+            @Model.Body
         </div>
-        <hr />
-        @Model.Body
+        
     </div>
     
+    <div id="post-comment">
+        <h2><i>التعليقات</i></h2>
+        @foreach (Comment comment in Model.Comments)
+        {
+            @Html.Partial("~/Views/Forum/_CommentItem.cshtml", comment);
+        }
+    </div>
+    <hr />
+    <h2>إضف تعليقك</h2>
+
+    @*@Html.Partial("~/Views/Forum/_AddComment.cshtml", new MvcDemo.Models.Comment());*@
+    @Html.Action("CreateComment", "Forum")
+    <hr />
 </div>
-<div id="post-comment">
-    <h3><i>Post comment</i></h3>
-    @foreach(Comment comment in Model.Comments) 
-    {
-        @Html.Partial("~/Views/Forum/_CommentItem.cshtml",comment);
-    }
-</div>
-<hr />
-<p>Add Comment</p>
-@Html.Partial("~/Views/Forum/_AddComment.cshtml",new MvcDemo.Models.Comment());
-<hr />
+

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MvcDemo.Models.Job>
+
+<div id="latestjobs">
+    @foreach (var job in Model)
+    {
+        <ul>
+            <li>
+                @Html.RouteLink(job.Name, "JobDetails", new { jobID = job.JobID })
+            </li>
+        </ul>
+    }
+</div>

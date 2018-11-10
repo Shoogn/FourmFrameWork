@@ -15,7 +15,7 @@ namespace MvcDemo.AbstractLayer
 
        IQueryable<Post> GetAllPosts { get; }
        Post GetPost(int postId);
-       Post NumberOfPosts();
+      // IQueryable<Post> NumberOfPosts { get; }
 
        void SaveForum(Forum forum);
        Forum DeleteForum(int forumId);
@@ -27,6 +27,7 @@ namespace MvcDemo.AbstractLayer
 
        void SaveComment(Comment comment);
 
+       void AddViewCount(int postID);
        void SubmitChanges();
     }
 }

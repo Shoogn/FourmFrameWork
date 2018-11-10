@@ -1,0 +1,28 @@
+﻿@model MvcDemo.Models.Job
+
+@{
+    ViewBag.Title = "JobDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>JobDetails</h2>
+<div id="jobs">
+    <div id="job-header">
+        <div class="title-header">
+            @Model.Name
+        </div>
+    </div>
+
+    <div id="fulldetails">
+        <div class="skin-details">
+            <strong>@Model.JobSerialNumber | @Model.AddedDate | @Model.ValidTo</strong>
+        </div>
+        <div class="skin-details">
+            <strong>@Model.OwnerOfJob | @Model.PageUrl</strong>
+        </div>
+    </div>
+   
+    <div id="job-details">
+        @Model.Description
+    </div>
+</div>

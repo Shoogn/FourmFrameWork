@@ -59,10 +59,18 @@ namespace MvcDemo.Repository
 
         public IQueryable<Post> GetAllPosts { get { return context.Posts; } }
 
-        public Post NumberOfPosts() 
-        {
-            return null;
-        }
+        //public IQueryable<Post> NumberOfPosts
+        //{
+        //    get
+        //    {
+        //        var post = from p in context.Posts
+        //                   group p by p.Forum into eachForumHas
+        //                   select new { eachForumHas.Key.Title, Post = eachForumHas.Count() };
+        //        return post;
+        //}
+        //}
+        
+                  
 
         public Post GetPost(int postId)
         {
@@ -73,9 +81,14 @@ namespace MvcDemo.Repository
         {
             if (post.PostID == 0)
             {
+                // Here I moved customer field to the Forum Controller in SaveForum ActionResult method
+
+                // Now Return It.
+                post.ViewCount = 0;
                 post.Approved = false;
                 post.closed = false;
                 post.AddedDate = DateTime.Now;
+                post.ApprovedDate = null;
                 context.Posts.Add(post);
             }
             else
@@ -86,6 +99,9 @@ namespace MvcDemo.Repository
                     dbEntry.AddedBy = post.AddedBy;
                     dbEntry.AddedDate = post.AddedDate;
                     dbEntry.Approved = post.Approved;
+                    dbEntry.ApprovedBy = post.ApprovedBy;
+                    dbEntry.ApprovedDate = post.ApprovedDate;
+                    dbEntry.Abstract = dbEntry.Abstract;
                     dbEntry.Body = post.Body;
                     dbEntry.closed = dbEntry.closed;
                     dbEntry.ForumID = post.ForumID;
@@ -113,6 +129,8 @@ namespace MvcDemo.Repository
                       where a.PostID == postId
                       select a).First();
             p.Approved = true;
+            p.ApprovedDate = DateTime.Now;
+            p.ApprovedBy = "Mohammed";
             context.SaveChanges();
             return p;
         }
@@ -132,14 +150,30 @@ namespace MvcDemo.Repository
 
         public void SaveComment(Comment comment) 
         {
-            if (comment.CommentID == 0) 
-            {
-                comment.Approved = true;
-                comment.PostID = 9;
-                comment.AddedDate = DateTime.Now.ToUniversalTime();
-                context.Comments.Add(comment);
-            }           
+            comment.AddedBy = "Mohammed";
+            comment.AddedDate = DateTime.Now;
+            comment.Approved = true;
+            comment.ApprovedDate = DateTime.Now;
+            context.Comments.Add(comment);
             context.SaveChanges();
+        }
+
+        public void AddViewCount(int postID)
+        {
+            Post viewSum = context.Posts.Find(postID);
+            if (viewSum != null)
+            {
+                try
+                {
+                    viewSum.ViewCount++;
+                    context.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                
+            }
         }
 
         public void SubmitChanges() 

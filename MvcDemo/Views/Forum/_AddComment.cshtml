@@ -1,14 +1,26 @@
 ﻿@model MvcDemo.Models.Comment
-
 @{
-    var Id = Request.Url.Segments.Last();
-    }
+    var id = Request.Url.Segments.Last();
+}
 @using (Html.BeginForm("CreateComment", "Forum", FormMethod.Post))
 {
-  
-    <br />
-@Html.TextBoxFor(m => m.PostID, new { PostID = Id ,disabled = "true"})<br /><br />
-@Html.TextBoxFor(m => m.Title)<br /><br />
-@Html.TextAreaFor(m => m.Body)<br /><br />
-    <input type="submit" value="Add Comment" />
+  <div class="comment-contents">
+      <br />
+      @Html.TextBox("PostID", id, new { style = "display:none" })
+
+      <div id="comment-title">
+          @Html.LabelFor(m => m.Title)
+          @Html.TextBoxFor(m => m.Title)
+      </div>
+      
+      <div id="comment-body">
+          @Html.LabelFor(m => m.Body)
+          @Html.TextAreaFor(m => m.Body)
+      </div>
+     
+      <div id="save-comment">
+          <input type="submit" value="Add Comment" />
+      </div>
+  </div>
+
 }

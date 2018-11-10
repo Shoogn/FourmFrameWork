@@ -9,20 +9,42 @@ namespace MvcDemo.Models
 {
     public class Post
     {
-
+        [HiddenInput(DisplayValue=false)]
         public int PostID { get; set; }
         public int ForumID { get; set; }
+
         [Required]
         public string Title { get; set; }
+
         [Required]
         public string AddedBy { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public string ApprovedBy { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public Nullable<System.DateTime> ApprovedDate { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
         public System.DateTime AddedDate { get; set; }
+
+        [Required]
+        public string Abstract { get; set; }
+
         [Required]
         public string Body { get; set; }
+
+        [Required]
+        [HiddenInput(DisplayValue = false)]
         public int ViewCount { get; set; }
 
         // Administration propreties
+        [Required]
+        [HiddenInput(DisplayValue = false)]
         public bool Approved { get; set; }
+
+        [Required]
+        [HiddenInput(DisplayValue = false)]
         public bool closed { get; set; }
 
         // Relationship

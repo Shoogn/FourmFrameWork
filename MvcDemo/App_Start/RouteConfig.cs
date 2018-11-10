@@ -75,6 +75,12 @@ namespace MvcDemo
                 defaults:  new { controller = "Forum", action = "Index" }
                 );
 
+            routes.MapRoute(
+                name: "JobDetails",
+                url: "Job/Details/{jobID}",
+                defaults: new { controller = "Jobs", action = "JobDetails", jobID = (int?)null }
+                );
+
             //routes.MapRoute(
             //    name: "Default2",
             //    url: "{controller}/{action}",

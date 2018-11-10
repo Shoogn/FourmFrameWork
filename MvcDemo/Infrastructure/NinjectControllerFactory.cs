@@ -37,6 +37,7 @@ namespace MvcDemo.Infrastructure
         private void AddDefaultBingings() 
         {
             ninjectKernel.Bind<IFourmRepository>().To<ForumRepository>();
+            ninjectKernel.Bind<IJobRepository>().To<JobRepository>();
         }
     }
 }

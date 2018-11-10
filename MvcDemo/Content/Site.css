@@ -1,12 +1,17 @@
-﻿body {
+﻿/*body {
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
     background-color: #fff;
+}*/
+@font-face{
+    font-family:DroidKufi-Regular;
+    src:url(MvcDemo/Content/Fonts/DroidKufi-Regular.woff) format('woff');
 }
 
 header, footer, nav, section {
     display: block;
+    
 }
 
 
@@ -62,43 +67,100 @@ textarea {
 
 /*   =========================== Forum
                                         ==========================  */
-.comment {
- margin-top: 1.2em;
-}
+
+body {font-family: georgia,"times new roman",times,serif,'DroidKufi-Regular';font-size: 90%; color: #333;margin: 0;padding: 0 40px 0 40px; background: #fff;text-align: right;}
+#top {width: 980px; height: 40px; margin: 0 auto; border-bottom: 4px solid #ddd;}
+#top ul { float: left; margin: 18px 0 0 0; padding: 0; list-style: none;}
+#top li {display: inline; font-size: 0.9em;line-height: 1.0em;margin: 0 0 0 20px; padding: 0;}
+#top li a { color: #dc0000; text-decoration: none;}
+#top li a:hover {color: #000;text-decoration: underline;}
+
+#top .befor-last a:hover{text-decoration:none;border:solid;border-color:green;font-size:x-large;}
+
+DIV#header {width: 980px;margin: 5px auto; background-color: #4C747E; border-bottom: 4px solid #ddd;color: white;font-size: x-large; padding: .6em;text-align:center;}
+
+#nav{width:980px; height:44px;margin:0 auto;background-color:#a08787;}
+#nav ul{padding:0 10px;margin:0;list-style:none;float:right;}
+#nav li{display:inline;font-size:2.0em;line-height:44px;margin:0 29px 0 0;padding:0; }
+#nav li a {color:#fff;text-decoration:none;}
+#nav li a:hover{color:#000;text-decoration:none;}
+
+#extralogo{width:980px;height:290px; margin:40px auto; border:dashed;border-color:red;}
+
+#extrafooter{width: 980px; height: 290px;margin: 0 auto; border-bottom: 1px solid #ddd;}
+#extrafooter h2.heading{font-size:1.5em;font-weight:normal;line-height:1.0em;letter-spacing:-1px;color:#000;margin:0;padding:10px 0;border-top:4px solid #ddd;border-bottom:1px solid #ddd;}
+#extrafooter ul{margin:0;padding:0;list-style:none;}
+#extrafooter li{font-size:1.0em;line-height:1.3em;margin:0;padding:9px 0;border-bottom:2px dotted #ccc;}
+#extrafooter li a{color:#dc0000;text-decoration:none;}
+#extrafooter li a:hover{color:#000;text-decoration:none;}
+#last-contents{float:left;width:312px;height:290px;margin:0 20px 0 0;padding:20px 0; text-align:right;}
+#max-readings{float:left;width:312px;height:290px;margin:0 10px 0 0;padding:20px 0;text-align:right;}
+#max-comments{float:left;width:312px;height:290px;margin:0 0 0 10px;padding:20px 0;text-align:right;}
+
+#extrafootertwo{width: 980px; height: 290px;margin: 200px auto; border-bottom: 1px solid #ddd;}
+#extrafootertwo h2.heading{font-size:1.5em;font-weight:normal;line-height:1.0em;letter-spacing:-1px;color:#000;margin:0;padding:10px 0;border-top:4px solid #ddd;border-bottom:1px solid #ddd;}
+#extrafootertwo ul{margin:0;padding:0;list-style:none;}
+#extrafootertwo li{font-size:1.0em;line-height:1.3em;margin:0;padding:9px 0;border-bottom:2px dotted #ccc;}
+#extrafootertwo li a{color:#dc0000;text-decoration:none;}
+#extrafootertwo li a:hover{color:#000;text-decoration:none;}
+#our-partners{float:left;width:624px;height:290px; margin:0 20px 0 0; padding:20px 0;text-align:right;}
+#jobs{float:left;width:312px;height:290px;margin:0 0 0 10px; padding:20px 0;text-align:right;}
+
+#show-forum{width:980px; margin:40px auto;}
+#show-forum h2.heading{font-size:1.5em; font-weight:normal;line-height:1.0em;letter-spacing:-1px;color:#000;margin:0;padding:10px 0;border-top:4px solid #ddd;border-bottom:1px solid #ddd;}
+#show-forum ul{margin:0;padding:0;list-style:none;}
+#show-forum li{font-size:1.0em;line-height:1.3em;margin:0;padding:9px 0;border-bottom:2px dotted #ccc;}
+#show-forum li a{color:#dc0000;text-decoration:none;}
+#show-forum li a:hover{color:#000;text-decoration:none;}
+DIV .postView-status{border: 1px solid;padding: 4px;width: 45px;position:absolute; right:600px; background-color:#4C747E;color:#fff;text-align:center;}
+DIV .postView-status strong{display:block;font-size:1.5em;}
+DIV .postView-status strong small{display:block;text-align:center;font-size:1.5em;}
+
+#manage-post{width:980px;margin:40px auto;}
+#manage-post h2.heading{font-size:1.5em; font-weight:normal;line-height:1.0em;letter-spacing:-1px;color:#000;margin:0;padding:10px 0;border-top:4px solid #ddd;border-bottom:1px solid #ddd;}
+#manage-post ul{margin:0;padding:0;list-style:none;}
+#manage-post li{font-size:1.0em;line-height:1.3em;margin:0;padding:9px 0;border-bottom:2px dotted #ccc;}
+#manage-post li a{color:#000;text-decoration:none;}
+#manage-post li a:hover{text-decoration:none;font-size:x-large; border:solid;}
+DIV .post-admin-status-approve {border: 1px solid;padding: 4px;width: 100px; position:absolute; right:600px; background-color:#fff;color:#fff;text-align:center;}
+DIV .post-admin-status-approve strong {display:block;font-size:1.5em;}
+DIV .post-admin-status-delete {border: 1px solid;padding: 4px;width: 100px;position:absolute; right:750px; background-color:#fff;color:#fff;text-align:center;}
+DIV .post-admin-status-delete strong {display:block;font-size:1.5em;}
+#manage-post h3{font-size:1em;color:#dc0000;}
+#manage-post .body{border-left:1px;text-align:right;margin:0 auto;padding:9px;}
+#manage-post .body h3{font-size:1em;}
+
+#posts{width:980px; margin:40px auto;}
+DIV#subject-header{width:900px; margin:50px auto; border-bottom: 4px solid #ddd;}
+DIV .title-header{width:800px; height:30px;font-size:x-large;text-decoration:none;border:solid;border-color:green;padding:10px;float:right;margin-top:8px; }
+
+
+DIV .postViewpage-status{border: 1px solid;padding: 4px;width: 45px;position:absolute; right:970px; background-color:#4C747E;color:#fff;text-align:center;margin-top:8px;}
+DIV .postViewpage-status strong{display:block;font-size:1.5em;}
+DIV .postViewpage-status strong small{display:block;text-align:center;font-size:1.5em;}
+
+DIV#subject-details{width:900px;margin:90px auto;font-size:1.5em;}
+
+DIV .comments-contents{width:800px;}
+DIV#comment-title{padding:7px;}
+DIV#comment-title input[type=text]{width:300px; border-style:solid;height:30px; border-radius:3px 3px;}
+DIV#comment-title input[type=text]{text-align:right;text-decoration:none;font-size:1.5em;}
+DIV#comment-body{padding:7px;}
+DIV#comment-body textarea{width:300px; border-style:solid;height:300px; border-radius:3px 3px;}
+DIV#comment-body textarea:focus{text-align:right;text-decoration:none;font-size:1.3em;}
+DIV#save-comment{padding:7px;}
+DIV#save-comment input[type=submit]{}
+
+.comment { width:980px;}
 .comment .comment-header  {
- margin: 0;
+margin: 2px auto;
  padding: 5px 10px;
- background: #5F919E none repeat scroll 0% 0%;
+ background: #4C747E none repeat scroll 0% 0%;
  border-top: 5px solid #4C747E;
  font-size: 1.1em;
  color: #ffffff;
- width:600px;
+ width:900px;
 }
 .comment blockquote {
   margin: .7em 2.5em;
-}
-
-DIV#header {
-    background-color: #4C747E;
-    border-bottom: 4px solid #ddd;
-    color: white;
-}
-    DIV#header DIV#title {
-        font-size: x-large;
-        padding: .6em;
-    }
-
-DIV#forums {
-    float: left;
-    width: 10em;
-    padding: .4em;
-}
-.post .title-header {
-    margin: 0;
-    padding: 5px 10px;
-    background: #ddd none repeat scroll 0% 0%;
-    border-top: 5px solid #4C747E;
-    font-size: 1.1em;
-    color: #f00;
-    width: 600px;
 }

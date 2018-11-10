@@ -1,0 +1,16 @@
+﻿@model IEnumerable<MvcDemo.Models.Post>
+<div id="lastposts">
+
+ @foreach (var post in Model)
+ {
+     <ul>
+         <li>
+             @Html.RouteLink(post.Title, "ForumPost", new { postId = post.PostID })
+         </li>
+     </ul>       
+ }
+</div>
+
+
+
+

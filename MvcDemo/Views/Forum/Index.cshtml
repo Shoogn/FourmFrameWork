@@ -1,17 +1,72 @@
 ﻿@model IEnumerable<MvcDemo.Models.Forum>
+@using MvcDemo.Models
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div id="mainMenu">
-
-        @foreach(var f in Model)
-        {
-            <ul>
-                <li>
-                    @Html.RouteLink(f.Title,"Forum",new {forumId = f.ForumID})                   
+<div id="nav">
+    @foreach (var f in Model)
+    {
+        <ul>
+            <li>
+                @Html.RouteLink(f.Title, "Forum", new { forumId = f.ForumID })
             </li>
-            </ul>           
-        }
+        </ul>
+    }
+
 </div>
+<div id="extralogo">
+
+</div>
+
+<div id="extrafooter">
+    <div id="last-contents">
+        <h2 class="heading">آخر المواضيع</h2>
+ @*@Html.Partial("_LastContents",new Forum())*@
+                @Html.Action("GetLastestPost")                       
+    </div>
+
+    <div id="max-readings">
+        <h2 class="heading">الأكثر قراءة</h2>
+        @Html.Action("GetMuchMoreViewPost")
+        @*<ul>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+        </ul>*@
+    </div>
+
+    <div id="max-comments">
+        <h2 class="heading">الأكثر تعليقا</h2>
+        <ul>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="extrafootertwo">
+
+    <div id="our-partners">
+        <h2 class="heading">شركاؤنا</h2>
+        <ul>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+            <li><a href="#">Mohammed Ahmed Hussien Babiker, He Is An ASP.NET MVC Developer And He Make This PlatForm &raquo;</a></li>
+        </ul>
+    </div>
+
+    <div id="jobs">
+        <h2 class="heading">وظائف</h2>
+       @Html.Action("GetLastestjobs","Jobs")
+    </div>
+</div>
+

@@ -16,9 +16,11 @@ namespace MvcDemo.Models
         public System.DateTime AddedDate { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+        public string AddedBy { get; set; }
 
         // Administartion
         public bool Approved { get; set; }
+        public System.DateTime ApprovedDate { get; set; }
         public virtual Post Post { get; set; }
     }
 }

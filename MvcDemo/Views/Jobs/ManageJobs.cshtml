@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MvcDemo.Models.Job>
+@{
+    ViewBag.Title = "ManageJobs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="manage-job">
+ <h2 class="heading">إدارة الوظائف</h2>
+    @foreach (var job in Model)
+    {
+        <div class="job" id="@job.JobID">
+            <ul>
+               <li>
+                   <div class="post-admin-status-approve">
+                       <strong>@Html.ActionLink("Close","CloseJob",new { jobID = job.JobID })</strong>
+                   </div>
+
+                   <div class="post-admin-status-delete">
+                       <strong>@Html.ActionLink("Delete", "RemoveJob", new { jobID = job.JobID })</strong>
+                   </div>
+                   <h3>@job.Name</h3>
+
+                   <a class="toggle-body" href="#">Show Body</a>
+                   <div class="body" style="display:none;">
+                       <h3>@job.Description</h3>
+                   </div>
+               </li>
+            </ul>
+        </div>
+    }
+</div>
+

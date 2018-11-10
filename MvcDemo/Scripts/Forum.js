@@ -48,3 +48,16 @@ $(".post .admin .remove").click(function () {
 //        $(this).css("color", "green");
 //    });
 //});
+
+// ------------------ Save New Post -------------------------
+function saveFailed() {
+    $("#response").html("Sorry there is somthing error");
+}
+
+function saveComplete() {
+    $("#progress").show();
+}
+
+function hideImage() {
+    $("#progress").hide();
+}

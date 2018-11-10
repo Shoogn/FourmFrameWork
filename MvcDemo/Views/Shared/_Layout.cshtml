@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,20 +10,26 @@
     <script src="~/Scripts/jquery-1.7.1.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 </head>
 <body>
-    <div id="header">
-        <div class="title">MVC DEMO </div>
+    <div id="top">
+        <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Feedback</a></li>
+            <li><a href="#">Support</a></li>
+            <li class="befor-last">@Html.RouteLink("Create new Post", "PostCreate")</li>
+            <li>@Html.RouteLink("Site Admin","PostsManager")</li>
+        </ul>
     </div>
-    <div id="forums">
-
+    <div id="header">
+        <div class="title">MVC DEMO - Discussion Forum </div>
     </div>
     <div>
         @if (TempData["message"] != null) 
         {
         <div class="message" style="background:green;color:white;padding:.2em;margin-top:.25em">
             @TempData["message"]
-
         </div>
         }
     </div>

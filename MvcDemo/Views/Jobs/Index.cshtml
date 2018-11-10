@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MvcDemo.Models.Job>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="show-jobs">
+    @foreach (var job in Model)
+    {
+        <ul>
+            <li>
+                <h3>@Html.RouteLink(job.Name, "JobDetails", new { jobID = job.JobID })</h3> 
+                <strong><i>By - @job.OwnerOfJob</i></strong>
+            </li>
+        </ul>
+    }  
+</div>

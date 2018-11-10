@@ -40,8 +40,10 @@ namespace MvcDemo.Controllers
         public ActionResult ViewPost(int postId)
         {
             var viewPost = repository.GetPost(postId);
-            viewPost.ViewCount++;
-            repository.SubmitChanges();
+            repository.AddViewCount(postId);
+            //viewPost.ViewCount++;
+            //repository.SubmitChanges();
+           
             if (viewPost == null)
                 throw new HttpException(404, "The post you search about could not be found!!");
             return View(viewPost);
@@ -87,23 +89,23 @@ namespace MvcDemo.Controllers
         // ================= Manage Post ====================
 
         [HttpGet]
-       [ChildActionOnly]
         public ActionResult CreatePost()
         {
-            ViewBag.forumId = new SelectList(repository.GetAllForums, "ForumID", "Title");
-            return View();
+          ViewBag.ForumID = new SelectList(repository.GetAllForums, "ForumID", "Title");
+           return View();
+       
         }
 
         [HttpPost]
         public ActionResult CreatePost(Post post)
         {
-            if (ModelState.IsValid)
-            {
-                repository.SavePost(post);
-                ViewBag.forumId = new SelectList(repository.GetAllForums, "ForumID", "Title");
-                return RedirectToAction("Index");
-            }
-            return View();
+          if(Request.IsAjaxRequest())
+          {                         
+              repository.SavePost(post);
+          }
+          ViewBag.ForumID = new SelectList(repository.GetAllForums, "ForumID", "Title", post.ForumID);
+          return PartialView("_Message");
+
         }
 
         public ActionResult ManagePosts()
@@ -168,27 +170,14 @@ namespace MvcDemo.Controllers
         // =================== Manage Comments ==================
 
         [HttpGet]
-        public ActionResult CreateComment(int postId) 
+        public ActionResult CreateComment() 
         {
-            Post post = repository.GetPost(postId);
-    
-            if (post == null) 
-            {
-                throw new HttpException(404, "Sorry there is no post has this ID");
-            }
-            return View(post);
+            return View();
         }
 
         [HttpPost]        
         public ActionResult CreateComment(Comment comment)
         {
-           // Post post = repository.GetPost(comment.PostID);
-            //if (post == null) 
-            //{
-            //    throw new HttpException(404, "Sorry there is no post has this ID");
-            //}
-            ////post.Comments.Add(comment);
-            //repository.SaveComment(comment);
             if (ModelState.IsValid)
             {
                 repository.SaveComment(comment);
@@ -196,6 +185,21 @@ namespace MvcDemo.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetLastestPost()
+        {
+            var post = repository.GetAllPosts.Where(p=>p.Approved==true).OrderBy(p => p.Title).Take(5);
+            return PartialView("_LastContents", post);
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetMuchMoreViewPost()
+        {
+            var postView = repository.GetAllPosts
+                .OrderByDescending(x => x.ViewCount).Take(5);                                       
+            return PartialView("_GetMuchMoreViewPostContents",postView);
         }
         
     }

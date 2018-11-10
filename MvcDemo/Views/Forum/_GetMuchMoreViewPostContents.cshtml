@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MvcDemo.Models.Post>
+<div id="max-readings">
+
+    @foreach (var post in Model)
+    {
+        <ul>
+            <li>
+                @Html.RouteLink(post.Title, "ForumPost", new { postId = post.PostID })
+            </li>
+        </ul>
+    }
+</div>

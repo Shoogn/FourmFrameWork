@@ -5,27 +5,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using(Html.BeginForm("CreatePost","Forum",FormMethod.Post))
-{
-    <div class="forum">
-        <label>Slecte which forum you want to add your post</label><br />
-        
-        @Html.DropDownList("ForumID","Slecte from here")
-    </div>
-    
-    <div class="title">
-        <label>Title</label><br />
-        @Html.TextBoxFor(m=>m.Title)
-    </div>
-    
-    <div class="body">
-        <label>Body</label><br />
-        @Html.TextBoxFor(m=>m.Body)
-    </div>
-    
-    <div class="addedby">
-        <label>Your name</label><br />
-        @Html.TextBoxFor(m=>m.AddedBy)
-    </div><br />
-    <input type="submit" value="Create new Post" />
+
+@{
+    AjaxOptions options = new AjaxOptions();
+    options.HttpMethod = "POST";
+    options.InsertionMode = InsertionMode.Replace;
+    options.LoadingElementId = "progress";
+    options.LoadingElementDuration = 1000;
+    options.UpdateTargetId = "response";
+    options.OnFailure = "saveFailed";
+    options.OnComplete = "saveComplete";
+    options.OnSuccess = "hideImage";
 }
+
+@using (Ajax.BeginForm("CreatePost", "Forum", options))
+{
+    <div class="post-contents">
+        <div id="post-title">
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title)
+        </div>
+
+
+        <div id="post-abstract">
+            @Html.LabelFor(m => m.Abstract)
+            @Html.TextBoxFor(m => m.Abstract)
+        </div>
+
+
+        <div id="post-body">
+            @Html.LabelFor(m => m.Body)
+            @Html.TextAreaFor(m => m.Body)
+        </div>
+
+        <div id="post-addedby">
+            @Html.LabelFor(m => m.AddedBy)
+            @Html.TextBoxFor(m => m.AddedBy)
+        </div>
+
+        <div id="post-formId">
+            @Html.LabelFor(m => m.ForumID)
+            @Html.DropDownList("ForumID", String.Empty)
+        </div>
+
+       <div id="save-post">
+           <input type="submit" value="Save your post" />
+       </div>                   
+    </div>
+    
+}
+
+<div id="progress" style="display:none;">
+    <div class="modelbackgroundajaxloder">
+        <img src="~/Images/ajax-loader.gif"/>
+    </div>
+</div>
+<div id="response"></div>
+@section Scripts{
+    
+<script src="~/Scripts/Forum.js"></script>
+}
+
